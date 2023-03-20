@@ -96,13 +96,21 @@ background-size: cover; background-repeat: no-repeat;">
             checkbox.type = 'checkbox';
             checkbox.id = element;
             checkbox.value = element;
+            checkbox.classList = "form-check-input";
 
             var label = document.createElement('label');
             label.htmlFor = element;
             label.appendChild(document.createTextNode(" " + element));
+            label.className = "form-check-label";
             var br = document.createElement('br');
+            
+            //customer bootstarap after added
+            var innercontainer = document.createElement('div');
+            innercontainer.id = element;
+            innercontainer.classList = "form-check";
 
             var container = document.getElementById('container');
+            container.appendChild(innercontainer);
             container.appendChild(checkbox);
             container.appendChild(label);
             container.appendChild(br);
