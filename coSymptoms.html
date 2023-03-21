@@ -64,31 +64,23 @@ background-size: cover; background-repeat: no-repeat;">
     <!-- Header  -->
 
     <div class="container p-3 display-flex shadow p-3 mb-5 bg-body rounded"
-        style="height: 60vh; width: 50vw; margin-top: 60px; opacity: 0.8; ">
-        <div id="container">
+        style="height: auto; width: 50vw; margin-top: 60px; opacity: 0.8; ">
+        <div class="container">
+            <h4>Select Co-Occuring Symptoms</h4>
         </div>
-        <!-- <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Default checkbox
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-              Checked checkbox
-            </label> -->
-          <!-- </div> -->
-          <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 125px;">
+        <div id="container" class="container mb-5 p-3">
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 125px;">
             <button class="btn btn-success" type="button" value="submit" onclick="SubmitData()">Submit</button>
         </div>
     </div>
 
     <!-- start of script -->
     <script>
-        var testArray = ['cold', 'fever', 'headache', 'vomitting', 'red eyes'];
-        console.log("array")
-        console.log(window.localStorage.getItem("apiSymptoms"));
+        // var testArray = ['cold', 'fever', 'headache', 'vomitting', 'red eyes'];
+        var testArray = JSON.parse(window.localStorage.getItem("check"));
+        // console.log("array")
+        // console.log();
         console.log(testArray);
         testArray.forEach(element => {
             console.log(element);
@@ -106,16 +98,14 @@ background-size: cover; background-repeat: no-repeat;">
 
             //customer bootstarap after added
             var innercontainer = document.createElement('div');
-            innercontainer.id = element;
+            innercontainer.id = "inner" + element;
             innercontainer.className = "form-check";
             innercontainer.appendChild(checkbox);
             innercontainer.appendChild(label);
 
             var container = document.getElementById('container');
             container.appendChild(innercontainer);
-            // container.appendChild(checkbox);
-            // container.appendChild(label);
-            // container.appendChild(br);
+            
         });
         function SubmitData() {
             var symptomsarray = [];
@@ -127,32 +117,38 @@ background-size: cover; background-repeat: no-repeat;">
                     i++;
                 }
             });
-            console.log("cehcked data " + symptomsarray);
-            window.localStorage.setItem("check", symptomsarray);
-            console.log("this is local data stored")
-            console.log(window.localStorage.getItem("check"));
-            const apiCall = async () => {
-                const response = await fetch('https://web-production-aeed.up.railway.app/db',{
-                    method: 'POST',
-                    body: JSON.stringify({
-                        request: symptomsarray
-                    }),
-                    headers: {
-                    'Content-Type': 'application/json'
+            if (i != 0) {
+                console.log("cehcked data " + symptomsarray);
+                window.localStorage.setItem("co", JSON.stringify(symptomsarray));
+                console.log("this is local data stored")
+                console.log(window.localStorage.getItem("co"));
+                const apiCall = async () => {
+                    const response = await fetch('https://web-production-aeed.up.railway.app/db', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            request: symptomsarray
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const myjson = await response.json();
+                    console.log("Data from Api");
+                    console.log(myjson);
+                    window.localStorage.setItem("db", JSON.stringify(myjson));
                 }
-            });
-                const myjson = await response.json();
-                console.log("Data from Api");
-                console.log(myjson);
-                window.localStorage.setItem("db", myjson);
+                try {
+                    apiCall();
+                    window.location.href='./result.html';
+                } catch {
+                    console.log("Error in api call");
+                }
+
+            } else {
+                alert("Select atleast 1 co-occuring symptoms");
             }
-           
-            try {
-                apiCall();
-                window.location.href='./result.html';
-            } catch {
-                console.log("Error in api call");
-            }
+
+
         }
 
         // console.log(window.localStorage.getItem("apiSymptoms"));
