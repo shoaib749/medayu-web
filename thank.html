@@ -51,35 +51,13 @@ background-size: cover; background-repeat: no-repeat;">
         </nav>
     </header>
     <!-- Header end -->
-
-    <!-- start of contact body -->
     <div class="container  p-3 display-flex shadow p-3 mb-5 bg-body rounded"
-        style="height: auto; width: 50vw; margin-top: 60px; opacity: 0.8; ">
-        <h4 style="padding: 20dp; text-align: center;">Contact Us</h4>
-        <form id="contact_form" method="post">
-            <div id="inputForm">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="name" placeholder="name@example.com" required>
-                    <label for="0">Name</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
-                    <label for="0">Email</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" rows="5" id="message" placeholder="name@example.com"
-                        required></textarea>
-                    <label for="message">Message</label>
-                </div>
-            </div>
-            <div class="d-grid gap-2 d-md-block mx-auto">
-                <button type="button" class="btn btn-success  " value="submit" onclick="sendMail()">Submit</button>
-            </div>
+        style="height: auto; width: 50vw; margin-top: 60px;">
+        <div style="background-image: url('data:image/png;base64,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'); background-size: cover; background-repeat: no-repeat; height: 25vh; width: 25vw;"></div>
+        <h4 style="padding: 20dp; text-align: center;">Thank You</h4>
 
-
-        </form>
     </div>
-    <!-- end of contact body -->
+
     <!-- footer start -->
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 border-top bg-dark"
         style="position: fixed; width: -webkit-fill-available; bottom: 0;">
@@ -107,54 +85,7 @@ background-size: cover; background-repeat: no-repeat;">
     </footer>
     <!-- footer end -->
 
-    <!-- start of contact script -->
-    <script>
-        async function sendMail() {
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
-            var form = document.getElementById('contact_form');
 
-            if (name.length != 0 && email.length != 0 && message.length != 0) {
-                let details = {
-                    name: name,
-                    email: email,
-                    message: message
-                };
-                let response = await fetch("https://mailer-22soi171g-shoaib749.vercel.app/v1//text-mail",{
-                    method :"POST",
-                    headers:{
-                        "Content-Type": "application/json;charset=utf-8",
-                    },
-                    body : JSON.stringify(details),
-                });
-
-                try {
-                    let result = await response.json();
-                    console.log("Success");
-                    // clear();
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Thank You',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    form.reset();
-                    // window.location.reload();
-                } catch {
-                    console.log("Eror in the mailsending api!!");
-                    alert("Something went wrong!");
-                }
-            } else {
-                alert("Please enter details");
-            }
-        }
-    </script>
-    <!-- End of contact script -->
-
-    <!-- sweet alert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
